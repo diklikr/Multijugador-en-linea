@@ -35,4 +35,14 @@ public class Item : NetworkBehaviour
         if (isCollected.Value) return;
             isCollected.Value = true;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!IsServer) return;
+        if (isCollected.Value) return;
+        if(other.CompareTag("Player"))
+        {
+            this.GetComponent<NetworkObject>().Despawn();
+        }
+    }
 }
