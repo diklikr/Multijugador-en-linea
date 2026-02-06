@@ -25,6 +25,17 @@ public class RequestSpawn : NetworkBehaviour
     [ServerRpc]
     void RequestSpawnServerRpc()
     {
+        ulong playerId = this.GetComponent<NetworkObject>().OwnerClientId;
+        ShowSpawnMessageClientRpc(playerId);
         spawner.SpawnObject();
+    }
+
+    [ClientRpc]
+    private void ShowSpawnMessageClientRpc(ulong playerId)
+    {
+        if (UImanager.instance != null)
+        {
+            UImanager.instance.ShowMessage($"Item Collected by {playerId}!");
+        }
     }
 }

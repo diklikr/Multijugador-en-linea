@@ -5,6 +5,8 @@ public class Item : NetworkBehaviour
 {
     private Renderer rend;
 
+    private static Spawner spawner => Object.FindFirstObjectByType<Spawner>();
+
     public NetworkVariable<bool> isCollected = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     private void Awake()
@@ -34,6 +36,13 @@ public class Item : NetworkBehaviour
     {
         if (isCollected.Value) return;
             isCollected.Value = true;
+        
+        ulong playerId = this.GetComponent<NetworkObject>().OwnerClientId;
+        ShowCollectedMessageClientRpc(playerId);
+
+        spawner.SpawnObject();
+
+        this.GetComponent<NetworkObject>().Despawn();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,7 +51,16 @@ public class Item : NetworkBehaviour
         if (isCollected.Value) return;
         if(other.CompareTag("Player"))
         {
-            this.GetComponent<NetworkObject>().Despawn();
+            CollectServerRpc();
+        }
+    }
+
+    [ClientRpc]
+    private void ShowCollectedMessageClientRpc(ulong playerId)
+    {
+        if(UImanager.instance != null)
+        {
+            UImanager.instance.ShowMessage($"Item Collected by {playerId}!");
         }
     }
 }
