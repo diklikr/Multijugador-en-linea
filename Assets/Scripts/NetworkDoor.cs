@@ -33,6 +33,7 @@ public class NetworkDoor : NetworkBehaviour
         isOpen.Value = true;
         PlaySoundClientRpc();
     }
+    [ServerRpc]
     public void CloseDoorServerRpc()
     {
         isOpen.Value = false;
