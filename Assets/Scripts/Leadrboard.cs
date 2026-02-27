@@ -15,6 +15,10 @@ public class Leadrboard : NetworkBehaviour
             leaderboard.SetActive(true);
             UpdateLeaderboard();
         }
+        if (Input.GetKey(KeyCode.C)){
+            Debug.Log("Enviando datos al backend");
+            SendToBack();
+        }
     }
 
     public void UpdateLeaderboard()
@@ -33,4 +37,9 @@ public class Leadrboard : NetworkBehaviour
         leaderboardText.text = sb.ToString();
     }
 
+    void SendToBack()
+    {
+        var player = NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<PlayerStats>();
+        Object.FindAnyObjectByType<BackendManager>().SendScore($"Player{player.OwnerClientId}", player.Score.Value);
+    }
 }
