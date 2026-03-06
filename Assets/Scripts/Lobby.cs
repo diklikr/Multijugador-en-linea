@@ -9,6 +9,7 @@ public class Lobby : NetworkBehaviour
     public Button clientButton;
     public Button startGameButton;
     public TMP_Text playerText;
+    public LanClient lanClient;
 
     private void Start()
     {
@@ -22,13 +23,17 @@ public class Lobby : NetworkBehaviour
     void StartHost()
     {
         NetworkManager.Singleton.StartHost();
+        gameObject.AddComponent<LanFinder>();
+
         hostButton.gameObject.SetActive(false);
         clientButton.gameObject.SetActive(false);
     }
 
     void StartClient()
     {
-        NetworkManager.Singleton.StartClient();
+        //NetworkManager.Singleton.StartClient();
+        lanClient.StartListening();
+
         hostButton.gameObject.SetActive(false);
         clientButton.gameObject.SetActive(false);
     }

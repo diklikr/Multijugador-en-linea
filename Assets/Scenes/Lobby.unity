@@ -912,6 +912,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1634129667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1634129669}
+  - component: {fileID: 1634129668}
+  m_Layer: 0
+  m_Name: LanClient
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1634129668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634129667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13878083dd6a661499919c38eb0d57a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: 8888
+  isConnected: 0
+  transport: {fileID: 0}
+--- !u!4 &1634129669
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634129667}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.0268629, y: 3.2225337, z: -2.3296952}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1651926083
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,7 +1012,7 @@ MonoBehaviour:
   m_MaxConnectAttempts: 60
   m_DisconnectTimeoutMS: 30000
   ConnectionData:
-    Address: 127.0.0.1
+    Address: 10.19.118.116
     Port: 7777
     ServerListenAddress: 127.0.0.1
     ClientBindPort: 0
@@ -1557,6 +1604,7 @@ MonoBehaviour:
   clientButton: {fileID: 1919961930}
   startGameButton: {fileID: 1183189914}
   playerText: {fileID: 1290327443}
+  lanClient: {fileID: 1634129668}
 --- !u!1 &2017348995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,3 +1751,4 @@ SceneRoots:
   - {fileID: 355728126}
   - {fileID: 1651926087}
   - {fileID: 114328285}
+  - {fileID: 1634129669}
